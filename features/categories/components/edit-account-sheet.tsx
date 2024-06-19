@@ -1,6 +1,6 @@
 import { AccountForm } from "@/components/account-form";
-import { uesOpenAccount } from "@/features/accounts/use-open-account";
-import { useGetAccount } from "@/features/accounts/api/use-get-account";
+import { uesOpenAccount } from "@/features/hooks/use-open-account";
+import { useGetAccount } from "@/features/accounts/api/user-get-account";
 import { useEditAccount } from "@/features/accounts/api/use-edit-account";
 import { useDeleteAccount } from "@/features/accounts/api/use-delete-account";
 

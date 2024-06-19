@@ -1,8 +1,9 @@
 "use client";
 
 import { Edit, MoreHorizontal, Trash } from "lucide-react";
+import { uesOpenAccount } from "@/features/hooks/use-open-account";
 import { useDeleteAccount } from "@/features/accounts/api/use-delete-account";
-import { uesOpenAccount } from "@/features/accounts/use-open-account";
+
 import { useConfirm } from "@/hooks/use-confirm";
 import { Button } from "@/components/ui/button";
 import {

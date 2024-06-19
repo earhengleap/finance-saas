@@ -1,4 +1,4 @@
-import { useNewAccount } from "@/features/accounts/use-new-account";
+import { useNewAccount } from "@/features/hooks/use-new-account";
 import { AccountForm } from "@/components/account-form";
 import { useCreateAccount } from "@/features/accounts/api/use-create-account";
 import {

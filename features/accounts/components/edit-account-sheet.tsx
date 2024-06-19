@@ -1,7 +1,10 @@
 import { AccountForm } from "@/components/account-form";
-import { useCreateAccount } from "@/features/accounts/api/use-create-account";
 import { uesOpenAccount } from "@/features/hooks/use-open-account";
 import { useGetAccount } from "@/features/accounts/api/user-get-account";
+import { useEditAccount } from "@/features/accounts/api/use-edit-account";
+import { useDeleteAccount } from "@/features/accounts/api/use-delete-account";
+
+import { useConfirm } from "@/hooks/use-confirm";
 import {
   Sheet,
   SheetContent,
@@ -22,13 +25,21 @@ type FormValues = z.input<typeof formSchema>;
 export const EditAccountSheet = () => {
   const { isOpen, onClose, id } = uesOpenAccount();
 
+  const [ConfimrDialog, confirm] = useConfirm(
+    "Are you sure?",
+    "You are about to delete this transaction."
+  );
+
   const accountQuery = useGetAccount(id);
-  const mutation = useCreateAccount();
+  const editMuation = useEditAccount(id);
+  const deleteMutataion = useDeleteAccount(id);
+
+  const isPending = editMuation.isPending || deleteMutataion.isPending;
 
   const isLoading = accountQuery.isLoading;
 
   const onSubmit = (values: FormValues) => {
-    mutation.mutate(values, {
+    editMuation.mutate(values, {
       onSuccess: () => {
         onClose();
       },
@@ -43,26 +54,42 @@ export const EditAccountSheet = () => {
         name: "",
       };
 
+  const onDelete = async () => {
+    const ok = await confirm();
+
+    if (ok) {
+      deleteMutataion.mutate(undefined, {
+        onSuccess: () => {
+          onClose();
+        },
+      });
+    }
+  };
+
   return (
-    <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent className="space-y-4">
-        <SheetHeader>
-          <SheetTitle>Edit Account</SheetTitle>
-          <SheetDescription>Edit an existing account</SheetDescription>
-        </SheetHeader>
-        {isLoading ? (
-          <div className="absolute inset-0 flex items-center">
-            <Loader2 className=" size-4 text-muted-foreground animate-spin" />
-          </div>
-        ) : (
-          <AccountForm
-            id={id}
-            onSubmit={onSubmit}
-            disabled={mutation.isPending}
-            defaultValues={defaultValues}
-          />
-        )}
-      </SheetContent>
-    </Sheet>
+    <>
+      <ConfimrDialog />
+      <Sheet open={isOpen} onOpenChange={onClose}>
+        <SheetContent className="space-y-4">
+          <SheetHeader>
+            <SheetTitle>Edit Account</SheetTitle>
+            <SheetDescription>Edit an existing account</SheetDescription>
+          </SheetHeader>
+          {isLoading ? (
+            <div className="absolute inset-0 flex items-center">
+              <Loader2 className=" size-4 text-muted-foreground animate-spin" />
+            </div>
+          ) : (
+            <AccountForm
+              id={id}
+              onSubmit={onSubmit}
+              disabled={isPending}
+              defaultValues={defaultValues}
+              onDelete={onDelete}
+            />
+          )}
+        </SheetContent>
+      </Sheet>
+    </>
   );
 };

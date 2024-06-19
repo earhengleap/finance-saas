@@ -1,5 +1,4 @@
-import { AccountForm } from "@/components/account-form";
-import { uesOpenAccount } from "@/features/accounts/use-open-account";
+
 import { useGetAccount } from "@/features/accounts/api/use-get-account";
 import { useEditAccount } from "@/features/accounts/api/use-edit-account";
 import { useDeleteAccount } from "@/features/accounts/api/use-delete-account";
@@ -15,6 +14,8 @@ import {
 import { insertAccountSchema } from "@/db/schema";
 import { z } from "zod";
 import { Loader2 } from "lucide-react";
+import { useOpenAccount } from "@/features/accounts/hooks/use-open-account";
+import { AccountForm } from "@/components/account-form";
 
 const formSchema = insertAccountSchema.pick({
   name: true,
@@ -23,7 +24,7 @@ const formSchema = insertAccountSchema.pick({
 type FormValues = z.input<typeof formSchema>;
 
 export const EditAccountSheet = () => {
-  const { isOpen, onClose, id } = uesOpenAccount();
+  const { isOpen, onClose, id } = useOpenAccount();
 
   const [ConfimrDialog, confirm] = useConfirm(
     "Are you sure?",

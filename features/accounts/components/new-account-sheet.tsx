@@ -1,5 +1,5 @@
-import { useNewAccount } from "@/features/accounts/use-new-account";
-import { AccountForm } from "@/components/account-form";
+import { useNewAccount } from "@/features/accounts/hooks/use-new-account";
+
 import { useCreateAccount } from "@/features/accounts/api/use-create-account";
 import {
   Sheet,
@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/sheet";
 import { insertAccountSchema } from "@/db/schema";
 import { z } from "zod";
+import { AccountForm } from "@/components/account-form";
 
 const formSchema = insertAccountSchema.pick({
   name: true,

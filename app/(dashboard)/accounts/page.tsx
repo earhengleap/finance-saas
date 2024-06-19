@@ -2,7 +2,7 @@
 
 import { Loader2, Plus } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useNewAccount } from "@/features/accounts/use-new-account";
+import { useNewAccount } from "@/features/accounts/hooks/use-new-account";
 import { useBulkDeleteAccounts } from "@/features/accounts/api/use-bulk-delete-accounts";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";

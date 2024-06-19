@@ -7,6 +7,7 @@ import { and, eq, inArray } from 'drizzle-orm';
 import { zValidator } from '@hono/zod-validator';
 import { createId } from "@paralleldrive/cuid2";
 
+
 const app = new Hono()
     .get(
         "/", 
@@ -35,7 +36,39 @@ const app = new Hono()
         async (c) => {
             const auth = getAuth(c);
             const { id } = c.req.valid("param");
-        }
+
+            if (!id) {
+                return c.json({
+                    error: "Missing id",
+                }, 400);
+            }
+
+            if (!auth?.userId) {
+                return c.json({
+                    error: "Unauthorized",
+                }, 401);
+            }
+
+            const [ data ] = await db
+                .select({
+                    id: accounts.id,
+                    name: accounts.name,
+                })
+                .from(accounts)
+                .where(
+                    and(
+                        eq(accounts.userId,auth.userId),
+                        eq(accounts.id, id),
+                    )
+                );
+
+                if (!data) {
+                    return c.json({
+                        error: "Not found"
+                    }, 404);
+                }
+                return c.json({ data });
+            }
     )
 
     .post(
@@ -92,5 +125,6 @@ const app = new Hono()
                 })
                 return c.json({data})
         },
-    );
+    )
+    
 export default app

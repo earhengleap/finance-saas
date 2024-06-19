@@ -3,13 +3,13 @@
 import { Loader2, Plus } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNewAccount } from "@/features/hooks/use-new-account";
-import { useGetAccounts } from "@/features/api/user-get-account";
-import { useBulkDeleteAccounts } from "@/features/api/use-bulk-delete";
+import { useBulkDeleteAccounts } from "@/features/accounts/api/use-bulk-delete";
 
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { DataTable } from "@/components/data-table";
 import { columns } from "./columns";
+import { useGetAccounts } from "@/features/accounts/api/use-get-accounts";
 
 const AccountPage = () => {
   const newAccount = useNewAccount();

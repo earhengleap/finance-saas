@@ -1,6 +1,6 @@
 import { useNewAccount } from "@/features/hooks/use-new-account";
 import { AccountForm } from "@/components/account-form";
-import { useCreateAccount } from "@/features/api/use-create-account";
+import { useCreateAccount } from "@/features/accounts/api/use-create-account";
 import {
   Sheet,
   SheetContent,

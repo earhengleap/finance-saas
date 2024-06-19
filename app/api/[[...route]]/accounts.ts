@@ -26,6 +26,18 @@ const app = new Hono()
     return c.json({ data });
     })
 
+    .get(
+        "/:id",
+        clerkMiddleware(),
+        zValidator("param", z.object({
+            id: z.string().optional(),
+        })),
+        async (c) => {
+            const auth = getAuth(c);
+            const { id } = c.req.valid("param");
+        }
+    )
+
     .post(
         '/',
         clerkMiddleware(), 

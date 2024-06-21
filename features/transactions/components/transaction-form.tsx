@@ -13,9 +13,10 @@ import {
 } from "@/components/ui/form";
 import { insertTransactionSchema } from "@/db/schema";
 import { Select } from "@/components/select";
-import { DatePicker } from "@/components/day-picker";
+import { DatePicker } from "@/components/date-picker";
 import { Textarea } from "@/components/ui/textarea";
 import { AmountInput } from "@/components/amount-input";
+import { covertAmountToMilliunits } from "@/lib/utils";
 
 const formSchema = z.object({
   date: z.coerce.date(),
@@ -68,7 +69,13 @@ export const TransactionForm = ({
   });
 
   const handleSubmit = (values: FormValues) => {
-    console.log({ values });
+    const amount = parseFloat(values.amount);
+    const amountInMilliunits = covertAmountToMilliunits(amount);
+
+    onSubmit({
+      ...values,
+      amount: amountInMilliunits,
+    });
   };
 
   const handleDelete = () => {

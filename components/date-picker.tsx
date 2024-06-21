@@ -19,7 +19,7 @@ type Props = {
 
 export const DatePicker = ({ value, onChange, disabled }: Props) => {
   return (
-    <Popover>
+    <Popover modal={true}>
       <PopoverTrigger asChild>
         <Button
           disabled={disabled}

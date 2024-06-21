@@ -2,7 +2,6 @@ import { CategoryForm } from "./category-form";
 import { useEditCategory } from "@/features/categories/api/use-edit-category";
 import { useDeleteCategory } from "@/features/categories/api/use-delete-category";
 import { useGetCategory } from "@/features/categories/api/use-get-category";
-import { useOpenCategory } from "@/features/categories/use-open-category";
 import { useConfirm } from "@/hooks/use-confirm";
 import {
   Sheet,
@@ -14,6 +13,7 @@ import {
 import { insertCategorySchema } from "@/db/schema";
 import { z } from "zod";
 import { Loader2 } from "lucide-react";
+import { useOpenCategory } from "@/features/categories/hooks/use-open-category";
 
 const formSchema = insertCategorySchema.pick({
   name: true,

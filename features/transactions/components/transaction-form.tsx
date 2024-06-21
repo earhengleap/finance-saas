@@ -76,6 +76,7 @@ export const TransactionForm = ({
       ...values,
       amount: amountInMilliunits,
     });
+    console.log({values})
   };
 
   const handleDelete = () => {

@@ -1,4 +1,3 @@
-import { useNewCategory } from "@/features/categories/use-new-category";
 import { CategoryForm } from "@/features/categories/components/category-form";
 import { useCreateCategory } from "@/features/categories/api/use-create-category";
 import {
@@ -10,6 +9,7 @@ import {
 } from "@/components/ui/sheet";
 import { insertCategorySchema } from "@/db/schema";
 import { z } from "zod";
+import { useNewCategory } from "../hooks/use-new-category";
 
 const formSchema = insertCategorySchema.pick({
   name: true,

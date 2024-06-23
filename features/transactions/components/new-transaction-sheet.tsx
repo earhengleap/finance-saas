@@ -27,6 +27,7 @@ export const NewTransactionSheet = () => {
   const { isOpen, onClose } = useNewTransaction();
 
   const createMutation = useCreateTransaction();
+
   const categoryQuery = useGetCategories();
   const categoryMutation = useCreateCategory();
   const onCraeteCategory = (name: string) =>
@@ -82,7 +83,7 @@ export const NewTransactionSheet = () => {
         ) : (
           <TransactionForm
             onSubmit={onSubmit}
-            disabled={false}
+            disabled={isPending}
             categoryOptions={categoryOptions}
             onCreateCategory={onCraeteCategory}
             accountOptions={accountOptions}

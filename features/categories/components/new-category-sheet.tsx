@@ -7,9 +7,9 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { insertCategorySchema } from "@/db/schema";
 import { z } from "zod";
 import { useNewCategory } from "../hooks/use-new-category";
+import { insertCategorySchema } from "@/db/schema";
 
 const formSchema = insertCategorySchema.pick({
   name: true,

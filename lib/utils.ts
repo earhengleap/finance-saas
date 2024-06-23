@@ -9,14 +9,6 @@ export function convertAmountFromMilliunits(amount: number) {
   return amount / 1000;
 }
 
-export function covertAmountToMilliunits(amount: number) {
-  return Math.round(amount * 1000);
-}
-
-export function formatCurrency(value: number) {
-  return Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-  }).format(value);
+export function convertAmountToMilliunits(amount: number) {
+  return amount * 1000;
 }

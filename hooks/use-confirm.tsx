@@ -9,7 +9,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { string } from "zod";
 
 export const useConfirm = (
   title: string,

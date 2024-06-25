@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useDeleteCategory } from "@/features/categories/api/use-delete-category";
-import { useOpenCategory } from "@/features/categories/use-open-category";
+import { useOpenCategory } from "@/features/categories/hooks/use-open-category";
 
 type Props = {
   id: string;

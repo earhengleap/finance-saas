@@ -52,7 +52,7 @@ const TransactionPage = () => {
   const isDisable = transactionsQuery.isLoading || deleteTransactions.isPending;
 
   const onSubmitImport = async (
-    values: (typeof transactionSchema.$inferInsert)[],
+    values: typeof transactionSchema.$inferInsert[],
   ) => {
     const accountId = await confirm();
 
